@@ -9,7 +9,14 @@ public class EnemyMovement : MonoBehaviour
     private Vector2 startingPosition; // Vị trí bắt đầu của quái vật
     private Rigidbody2D myRigidbody;
     private bool movingRight = true;
-
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        // Đổi hướng khi quái vật chạm phải vật cản
+        if (!other.CompareTag("Player")) // Nếu không phải là người chơi
+        {
+            FlipDirection();
+        }
+    }
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
